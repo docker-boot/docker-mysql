@@ -1,0 +1,29 @@
+version: "3.1"
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=123456
+      - TZ=Asia/Shanghai
+    volumes:
+      - .:/application
+      - ./conf:/etc/mysql/mysql.conf.d
+      - ./data:/var/lib/mysql
+      - ./log:/var/log/mysql
+    ports:
+      - 3306:3306
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+    ports:
+      - 10011:80
+    depends_on:
+      - mysql

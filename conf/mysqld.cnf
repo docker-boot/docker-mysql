@@ -1,0 +1,15 @@
+[mysqld]
+pid-file       = /var/run/mysqld/mysqld.pid
+socket         = /var/run/mysqld/mysqld.sock
+datadir        = /var/lib/mysql
+log-error      = /var/log/mysql/error.log
+symbolic-links = 0
+# 远程访问
+# bind-address   = 127.0.0.1
+bind-address   = 0.0.0.0
+skip-name-resolve
+# 慢查询日志
+slow_query_log      = 1
+long_query_time     = 2
+log_output          = 'FILE,TABLE'
+slow_query_log_file = /var/log/mysql/slow.log
